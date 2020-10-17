@@ -384,52 +384,6 @@ void keyReleased()
   }
 }
 
-void Jump(player p)
-{
-  if(jumpTime >= 1 && jumpTime <= 10)
-  {
-    e.y -= 14;
-  }
-  if(jumpTime >= 11 && jumpTime <= 15)
-  {
-    e.y -= 9;
-  }
-  if(jumpTime >= 16 && jumpTime <= 17)
-  {
-    e.y -= 6;
-  }
-  if(jumpTime == 18)
-  {
-    e.y -= 3;
-    jump = false;
-    fall = true;
-  }
-  if(jumpTime == 19)
-  {
-    e.y += 3;
-  }
-  if(jumpTime >= 20 && jumpTime <= 21)
-  {
-    e.y += 6;
-  }
-  if(jumpTime >= 22 && jumpTime <= 26)
-  {
-    e.y += 9;
-  }
-  if(jumpTime >= 27 && jumpTime < 36)
-  {
-    e.y += 14;
-  }
-  if(jumpTime == 36)
-  {
-    e.y += 14;
-    fall = false;
-    PressUp = false;
-    jumpTime = 0;
-  }
-  jumpTime ++;
-}
-
 void Fall()
 {
     if(fallDown == true)
