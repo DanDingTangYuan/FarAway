@@ -66,7 +66,7 @@ class player
             if(PressRight == true && PressLeft == true)
             {
                 walkSpeed = 0;
-                e.Jump();
+                Jump();
                 playerFace = 2;
                 if(fall == true)
                 {
@@ -76,7 +76,7 @@ class player
             else if(PressRight == true)
             {
                 walkSpeed = 7;
-                e.Jump();
+                Jump();
                 playerFace = 3;
                 if(fall == true)
                 {
@@ -86,7 +86,7 @@ class player
             else if(PressLeft == true)
             {
                 walkSpeed = -7;
-                e.Jump();
+                Jump();
                 playerFace = 1;
                 if(fall == true)
                 {
@@ -96,14 +96,14 @@ class player
             else
             {
                 walkSpeed = 0;
-                e.Jump();
+                Jump();
                 playerFace = 2;
                 if(fall == true)
                 {
                     playerFace = 8;
                 }
             }
-            e.PlayerFace();
+            PlayerFace();
         }
         else
         {
@@ -133,7 +133,7 @@ class player
                     walkSpeed = 0;
                     Fall();
                 }
-                e.PlayerFace();
+                PlayerFace();
             }
             else
             {
@@ -157,7 +157,7 @@ class player
                     playerFace = 5;
                     walkSpeed = 0;
                 }
-                e.PlayerFace();
+                PlayerFace();
             }
         }
         if(x >= 1080)
@@ -424,6 +424,19 @@ void Fall()
     }
 }
 
+void mousePressed()
+{
+    if(onBotton == true)
+    {
+        if(mouseButton == LEFT)
+        {
+            status = 2
+            ;
+        }
+    }
+    
+}
+
 void GameManu()
 {
     if(abs(mouseX - 880) <= 150 && abs(mouseY - 520) <= 50)
@@ -455,18 +468,3 @@ void GameManu()
         onBotton = false;
     }
 }
-
-void mousePressed()
-{
-    if(onBotton == true)
-    {
-        if(mouseButton == LEFT)
-        {
-            status = 2
-            ;
-        }
-    }
-    
-}
-
-
