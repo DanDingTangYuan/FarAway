@@ -57,7 +57,7 @@ class player
 
     // void barrier()
     // {
-
+        .
     // }
 
     void move(mapIndicate a)
