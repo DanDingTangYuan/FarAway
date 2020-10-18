@@ -59,7 +59,7 @@ class player
     // {
     // }
 
-    void move(mapIndicate a)
+    void move(mapIndicate b)
     {
         if(PressUp == true)
         {
