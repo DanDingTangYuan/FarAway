@@ -21,7 +21,6 @@ boolean jump = false;       //Jump() 中向上階段
 boolean fall = false;       //Jump() 中向下階段
 
 boolean fallDown = false; // 判定腳色掉落
-int fallTime = 0;   //腳色掉落時間
 
 int playerX = 540;    //玩家位置
 int playerY = 510;    //玩家位置
@@ -29,9 +28,6 @@ int mapNumber = 1;    //地圖編號
 int mapX = 0;    //地圖座標, X軸
 int mapX_2 = 2560;    //地圖座標_2, X軸
 
-mapL = loadImage("map-1.jpg");
-mapC = loadImage("map-2.jpg");
-mapR = loadImage("map-3.jpg");
 
 
 // class Block
@@ -48,7 +44,7 @@ mapR = loadImage("map-3.jpg");
 
 class player
 {
-    int x, y, playerFace, walkSpeed;
+    int x, y, playerFace, walkSpeed, fallTime;
 
     player()
     {
@@ -56,6 +52,7 @@ class player
         y = 510;
         playerFace = 5;
         walkSpeed = 0;
+        fallTime = 0;
     }
 
     // void barrier()
@@ -273,6 +270,47 @@ class player
             jumpTime = 0;
         }
     }   
+
+    void Fall()
+    {
+        if(fallDown == true)
+        {
+            if(fallTime < 9)
+            {
+                fallTime ++;
+            }
+            switch(fallTime)
+            {
+                case 1 :
+                    y -= 3;
+                    break;
+                case 2 :
+                    y -= 6;
+                    break;
+                case 3 :
+                    y -= 6;
+                    break;
+                case 4 :
+                    y -= 9;
+                    break;
+                case 5 :
+                    y -= 9;
+                    break;
+                case 6 :
+                    y -= 9;
+                    break;
+                case 7 :
+                    y -= 9;
+                    break;
+                case 8 :
+                    y -= 9;
+                    break;
+                case 9 :
+                    y -= 14;
+                    break;
+            }
+        }
+    }
 }
 
 class mapIndicate
@@ -331,7 +369,9 @@ void setup()
     BG = loadImage("cover.jpg");
     PF = loadImage("p5.png");
     gameStart = loadImage("startbotton-1.png");
-
+    mapL = loadImage("map-1.jpg");
+    mapC = loadImage("map-2.jpg");
+    mapR = loadImage("map-3.jpg");
     image(BG, 0, 0);
 }
 
@@ -382,47 +422,6 @@ void keyReleased()
     e.move();
     break;
   }
-}
-
-void Fall()
-{
-    if(fallDown == true)
-    {
-        if(fallTime < 9)
-        {
-            fallTime ++;
-        }
-        switch(fallTime)
-        {
-            case 1 :
-                playerY -= 3;
-                break;
-            case 2 :
-                playerY -= 6;
-                break;
-            case 3 :
-                playerY -= 6;
-                break;
-            case 4 :
-                playerY -= 9;
-                break;
-            case 5 :
-                playerY -= 9;
-                break;
-            case 6 :
-                playerY -= 9;
-                break;
-            case 7 :
-                playerY -= 9;
-                break;
-            case 8 :
-                playerY -= 9;
-                break;
-            case 9 :
-                playerY -= 14;
-                break;
-        }
-    }
 }
 
 void mousePressed()
