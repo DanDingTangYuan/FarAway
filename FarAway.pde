@@ -29,6 +29,9 @@ int mapNumber = 1;    //地圖編號
 int mapX = 0;    //地圖座標, X軸
 int mapX_2 = 2560;    //地圖座標_2, X軸
 
+mapL = loadImage("map-1.jpg");
+mapC = loadImage("map-2.jpg");
+mapR = loadImage("map-3.jpg");
 
 
 // class Block
@@ -328,9 +331,7 @@ void setup()
     BG = loadImage("cover.jpg");
     PF = loadImage("p5.png");
     gameStart = loadImage("startbotton-1.png");
-    mapL = loadImage("map-1.jpg");
-    mapC = loadImage("map-2.jpg");
-    mapR = loadImage("map-3.jpg");
+
     image(BG, 0, 0);
 }
 
