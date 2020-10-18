@@ -9,9 +9,6 @@ PImage test;    //test = 測試用
 
 boolean onBotton = false;   // 游標位置判定
 
-
-int walkSpeed = 0; //走路速度
-int mapSpeed = 0;   //地圖移動速度
 int jumpTime = 0;   //跳躍的時間計算
 
 boolean PressRight = false;    //多重判斷用, 向右
@@ -66,7 +63,7 @@ class player
             if(PressRight == true && PressLeft == true)
             {
                 walkSpeed = 0;
-                Jump();
+                // Jump();
                 playerFace = 2;
                 if(fall == true)
                 {
@@ -76,7 +73,7 @@ class player
             else if(PressRight == true)
             {
                 walkSpeed = 7;
-                Jump();
+                // Jump();
                 playerFace = 3;
                 if(fall == true)
                 {
@@ -86,7 +83,7 @@ class player
             else if(PressLeft == true)
             {
                 walkSpeed = -7;
-                Jump();
+                // Jump();
                 playerFace = 1;
                 if(fall == true)
                 {
@@ -96,14 +93,14 @@ class player
             else
             {
                 walkSpeed = 0;
-                Jump();
+                // Jump();
                 playerFace = 2;
                 if(fall == true)
                 {
                     playerFace = 8;
                 }
             }
-            PlayerFace();
+            // PlayerFace();
         }
         else
         {
@@ -113,27 +110,27 @@ class player
                 {
                     playerFace = 8;
                     walkSpeed = 0;
-                    Fall();
+                    // Fall();
                 }
                 else if(PressRight == true)
                 {
                     playerFace = 9;
                     walkSpeed = 7;
-                    Fall();
+                    // Fall();
                 }
                 else if(PressLeft == true)
                 {
                     playerFace = 7;
                     walkSpeed = -7;
-                    Fall();
+                    // Fall();
                 }
                 else
                 {
                     playerFace = 8;
                     walkSpeed = 0;
-                    Fall();
+                    // Fall();
                 }
-                PlayerFace();
+                // PlayerFace();
             }
             else
             {
@@ -157,7 +154,7 @@ class player
                     playerFace = 5;
                     walkSpeed = 0;
                 }
-                PlayerFace();
+                // PlayerFace();
             }
         }
         if(x >= 1080)
@@ -396,15 +393,12 @@ void keyPressed()
   {
   case LEFT:
     PressLeft = true;
-    e.move();
     break;
   case RIGHT:
     PressRight = true;
-    e.move();
     break;
   case ' ':
     PressUp = true;
-    e.move();
     break;
   }
 }
@@ -415,26 +409,19 @@ void keyReleased()
   {
   case LEFT:
     PressLeft = false;
-    e.move();
     break;
   case RIGHT:
     PressRight = false;
-    e.move();
     break;
   }
 }
 
 void mousePressed()
 {
-    if(onBotton == true)
+    if(onBotton == true && mouseButton == LEFT)
     {
-        if(mouseButton == LEFT)
-        {
-            status = 2
-            ;
-        }
+        status = 2;
     }
-    
 }
 
 void GameManu()
