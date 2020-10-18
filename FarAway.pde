@@ -49,10 +49,10 @@ class player
 
     player()
     {
-        this.x = 540;
-        this.y = 510;
-        this.playerFace = 5;
-        this.walkSpeed = 0;
+        x = 540;
+        y = 510;
+        playerFace = 5;
+        walkSpeed = 0;
     }
 
     // void barrier()
@@ -277,8 +277,8 @@ class mapIndicate
     int x, x_2, mapSpeed;
     mapIndicate()
     {
-        this.x = 0;
-        this.x_2 = 2560;
+        x = 0;
+        x_2 = 2560;
     }
 
     void mapMove()
