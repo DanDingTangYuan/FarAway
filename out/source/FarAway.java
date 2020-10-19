@@ -25,9 +25,6 @@ PImage test;    //test = 測試用
 
 boolean onBotton = false;   // 游標位置判定
 
-
-int walkSpeed = 0; //走路速度
-int mapSpeed = 0;   //地圖移動速度
 int jumpTime = 0;   //跳躍的時間計算
 
 boolean PressRight = false;    //多重判斷用, 向右
@@ -37,14 +34,10 @@ boolean jump = false;       //Jump() 中向上階段
 boolean fall = false;       //Jump() 中向下階段
 
 boolean fallDown = false; // 判定腳色掉落
-int fallTime = 0;   //腳色掉落時間
 
 int playerX = 540;    //玩家位置
 int playerY = 510;    //玩家位置
 int mapNumber = 1;    //地圖編號
-int mapX = 0;    //地圖座標, X軸
-int mapX_2 = 2560;    //地圖座標_2, X軸
-
 
 
 // class Block
@@ -61,29 +54,29 @@ int mapX_2 = 2560;    //地圖座標_2, X軸
 
 class player
 {
-    int x, y, playerFace, walkSpeed;
+    int x, y, playerFace, walkSpeed, fallTime;
 
     player()
     {
-        this.x = 540;
-        this.y = 510;
-        this.playerFace = 5;
-        this.walkSpeed = 0;
+        x = 540;
+        y = 510;
+        playerFace = 5;
+        walkSpeed = 0;
+        fallTime = 0;
     }
 
     // void barrier()
     // {
-
     // }
 
-    public void move(mapIndicate a)
+    public void playerMove(mapIndicate b)
     {
         if(PressUp == true)
         {
             if(PressRight == true && PressLeft == true)
             {
                 walkSpeed = 0;
-                e.Jump();
+                Jump();
                 playerFace = 2;
                 if(fall == true)
                 {
@@ -93,7 +86,7 @@ class player
             else if(PressRight == true)
             {
                 walkSpeed = 7;
-                e.Jump();
+                Jump();
                 playerFace = 3;
                 if(fall == true)
                 {
@@ -103,7 +96,7 @@ class player
             else if(PressLeft == true)
             {
                 walkSpeed = -7;
-                e.Jump();
+                Jump();
                 playerFace = 1;
                 if(fall == true)
                 {
@@ -113,14 +106,14 @@ class player
             else
             {
                 walkSpeed = 0;
-                e.Jump();
+                Jump();
                 playerFace = 2;
                 if(fall == true)
                 {
                     playerFace = 8;
                 }
             }
-            e.PlayerFace();
+            PlayerFace();
         }
         else
         {
@@ -150,7 +143,7 @@ class player
                     walkSpeed = 0;
                     Fall();
                 }
-                e.PlayerFace();
+                PlayerFace();
             }
             else
             {
@@ -174,7 +167,7 @@ class player
                     playerFace = 5;
                     walkSpeed = 0;
                 }
-                e.PlayerFace();
+                PlayerFace();
             }
         }
         if(x >= 1080)
@@ -205,7 +198,7 @@ class player
     
     public void display()
     {
-        image(PF, playerX, playerY);
+        image(PF, x, y);
     }
 
     public void PlayerFace()
@@ -287,6 +280,47 @@ class player
             jumpTime = 0;
         }
     }   
+
+    public void Fall()
+    {
+        if(fallDown == true)
+        {
+            if(fallTime < 9)
+            {
+                fallTime ++;
+            }
+            switch(fallTime)
+            {
+                case 1 :
+                    y -= 3;
+                    break;
+                case 2 :
+                    y -= 6;
+                    break;
+                case 3 :
+                    y -= 6;
+                    break;
+                case 4 :
+                    y -= 9;
+                    break;
+                case 5 :
+                    y -= 9;
+                    break;
+                case 6 :
+                    y -= 9;
+                    break;
+                case 7 :
+                    y -= 9;
+                    break;
+                case 8 :
+                    y -= 9;
+                    break;
+                case 9 :
+                    y -= 14;
+                    break;
+            }
+        }
+    }
 }
 
 class mapIndicate
@@ -294,8 +328,8 @@ class mapIndicate
     int x, x_2, mapSpeed;
     mapIndicate()
     {
-        this.x = 0;
-        this.x_2 = 2560;
+        x = 0;
+        x_2 = 2560;
     }
 
     public void mapMove()
@@ -325,13 +359,12 @@ class mapIndicate
         {
             image(mapR, x_2, 0);
         }
-        else if(mapX <= -7680)
+        else if(x <= -7680)
         {
             x = -7680;
             x_2 = x + 5120;
             image(mapR, x_2, 0);
         }
-        
     }
 }
 
@@ -359,8 +392,8 @@ public void draw()
             GameManu();
             break;
         case 2 :    //遊戲畫面
-            b.display();
-            e.move();
+            b.mapMove();
+            e.playerMove(b);
             e.display();
             break;
     }
@@ -372,15 +405,12 @@ public void keyPressed()
   {
   case LEFT:
     PressLeft = true;
-    e.move();
     break;
   case RIGHT:
     PressRight = true;
-    e.move();
     break;
   case ' ':
     PressUp = true;
-    e.move();
     break;
   }
 }
@@ -391,99 +421,18 @@ public void keyReleased()
   {
   case LEFT:
     PressLeft = false;
-    e.move();
     break;
   case RIGHT:
     PressRight = false;
-    e.move();
     break;
   }
 }
 
-public void Jump(player p)
+public void mousePressed()
 {
-  if(jumpTime >= 1 && jumpTime <= 10)
-  {
-    e.y -= 14;
-  }
-  if(jumpTime >= 11 && jumpTime <= 15)
-  {
-    e.y -= 9;
-  }
-  if(jumpTime >= 16 && jumpTime <= 17)
-  {
-    e.y -= 6;
-  }
-  if(jumpTime == 18)
-  {
-    e.y -= 3;
-    jump = false;
-    fall = true;
-  }
-  if(jumpTime == 19)
-  {
-    e.y += 3;
-  }
-  if(jumpTime >= 20 && jumpTime <= 21)
-  {
-    e.y += 6;
-  }
-  if(jumpTime >= 22 && jumpTime <= 26)
-  {
-    e.y += 9;
-  }
-  if(jumpTime >= 27 && jumpTime < 36)
-  {
-    e.y += 14;
-  }
-  if(jumpTime == 36)
-  {
-    e.y += 14;
-    fall = false;
-    PressUp = false;
-    jumpTime = 0;
-  }
-  jumpTime ++;
-}
-
-public void Fall()
-{
-    if(fallDown == true)
+    if(onBotton == true && mouseButton == LEFT)
     {
-        if(fallTime < 9)
-        {
-            fallTime ++;
-        }
-        switch(fallTime)
-        {
-            case 1 :
-                playerY -= 3;
-                break;
-            case 2 :
-                playerY -= 6;
-                break;
-            case 3 :
-                playerY -= 6;
-                break;
-            case 4 :
-                playerY -= 9;
-                break;
-            case 5 :
-                playerY -= 9;
-                break;
-            case 6 :
-                playerY -= 9;
-                break;
-            case 7 :
-                playerY -= 9;
-                break;
-            case 8 :
-                playerY -= 9;
-                break;
-            case 9 :
-                playerY -= 14;
-                break;
-        }
+        status = 2;
     }
 }
 
@@ -518,219 +467,201 @@ public void GameManu()
         onBotton = false;
     }
 }
-
-public void mousePressed()
-{
-    if(onBotton == true)
-    {
-        if(mouseButton == LEFT)
-        {
-            status = 2
-            ;
-        }
-    }
-    
-}
-
-
-//use mouse to control the cannon
-//mouse click to shoot
-//'p','q' to increase or decrease the speed
-//'r' to reset
-//when you hit the plane, you get 3 bullet and 100 points
-// for reward
-int remain=20;
-int credit=0;
-int hit=0;
-PFont font;
-class plane
-{
-  int x;
-  int y;
-  int flag;
-  int speed;
-  plane(int x,int y)
-  {
-    this.x=x;
-    this.y=y;
-    speed=3;
-    flag=-1;
-  }
-  public void fly()
-  {
-      if(flag==-1)
-      {
-        x+=speed;
-        if(x>=600) 
-        {
-          x-=600;
-          y=(int)random(20,300);
-        }
-      }
-     if(flag==1)
-     {
-        flag=-1;
-        x=0;
-        speed++;
-     } 
-  }
-  public void crash(cannonball c)
-  {
-    if(dist(x,y,c.x,c.y)<30) 
-    {
-      credit+=100;
-      flag=1;
-      hit=1;
-    }
-  }
-  public void display()
-  {
-    if(x<600)
-    {
-      fill(20);
-      rect(x,y,60,20);
-      ellipse(x+15,y,10,20);
-      ellipse(x+15,y+20,10,20);
-    }
-  }
-}
-class cannonball
-{
-  int x;
-  int y;
-  int flag;
-  cannonball()
-  {
-    x=600;
-    y=600;
-    flag=1;//can be fired
-  }
-  public void fire(int x,int y)
-  {
-    this.x=x;
-    this.y=y;
-    flag=-1;//fired
-  }
-  public void fly()
-  {
-    if(flag==-1) y-=5;
-  }
-  public void display()
-  {
-    if(y<600)
-    {
-      fill(100);
-      ellipse(x,y,20,20);
-    }
-  }
-}
-class cannon
-{
-  int x;
-  cannon(int x)
-  {
-    this.x=x;
-  }
-  public void display()
-  {
-    fill(0);
-    rect(mouseX,580,40,20);
-    rect(mouseX+10,560,20,40);
-  }
-  public void fire(cannonball c)
-  {
-    c.fire(mouseX,580);
-  }
-}
-cannon a=new cannon((int)random(20,500));
-cannonball[] c=new cannonball[20];
-plane p=new plane(0,(int)random(20,200));
-public void setup()
-{
-  size(600,600);
-  smooth();
-  background(255);
-  font=loadFont("font.vlw");
-  textFont(font);
-  for(int i=0;i<20;i++)
-  {
-     c[i]=new cannonball();
-  }
-}
-public void keyPressed()
-{
-  if(key=='r')
-  {
-     remain=20;
-     credit=0;
-     for(int i=0;i<20;i++)
-       c[i]=new cannonball();
-     p.flag=-1;
-     p.speed=3;
-  }
-  if(key=='e') p.speed+=3;
-  if(key=='q')
-  {
-    if(p.speed<=3) return;
-    else p.speed-=3;
-  }
-}
-public void mousePressed()
-{
-  int i=0;
-    for(i=0;i<20;i++)
-    {
-      if(c[i].flag==1) break;
-    }
-    if(i==20) return;
-    a.fire(c[i]);
-    remain--;
-}
-public void draw()
-{
-  background(255); 
-  a.display();
-  for(int i=0;i<20;i++)
-  {
-    if(c[i].flag==-1) 
-    {
-      c[i].fly();
-      c[i].display();
-    }
-  }
-  for(int i=0;i<20;i++)
-  {
-    p.crash(c[i]);
-  }
-  p.fly();
-  p.display();
-  if(hit==1)
-  {
-    hit=0;
-    int j=5;
-    for(int i=0;i<20;i++)
-    {
-      if(c[i].flag==-1) 
-      {
-        c[i]=new cannonball();
-        j--;
-        remain++;
-        if(j==0) break;
-      }
-    }
-  }
-  textSize(20);
-  text("remain: "+remain,500,50);
-  text("credit: "+credit,500,100);
-  if(remain==0)
-  {
-    textSize(50);
-    text("run out of ammo...",100,150);
-    text("final score is: "+credit,100,220);
-    text("press 'r' to restart..",100,280); 
-  }
+// //use mouse to control the cannon
+// //mouse click to shoot
+// //'p','q' to increase or decrease the speed
+// //'r' to reset
+// //when you hit the plane, you get 3 bullet and 100 points
+// // for reward
+// int remain=20;
+// int credit=0;
+// int hit=0;
+// class plane
+// {
+//   int x;
+//   int y;
+//   int flag;
+//   int speed;
+//   plane(int x,int y)
+//   {
+//     this.x=x;
+//     this.y=y;
+//     speed=3;
+//     flag=-1;
+//   }
+//   void fly()
+//   {
+//       if(flag==-1)
+//       {
+//         x+=speed;
+//         if(x>=600) 
+//         {
+//           x-=600;
+//           y=(int)random(20,300);
+//         }
+//       }
+//      if(flag==1)
+//      {
+//         flag=-1;
+//         x=0;
+//         speed++;
+//      } 
+//   }
+//   void crash(cannonball c)
+//   {
+//     if(dist(x,y,c.x,c.y)<30) 
+//     {
+//       credit+=100;
+//       flag=1;
+//       hit=1;
+//     }
+//   }
+//   void display()
+//   {
+//     if(x<600)
+//     {
+//       fill(20);
+//       rect(x,y,60,20);
+//       ellipse(x+15,y,10,20);
+//       ellipse(x+15,y+20,10,20);
+//     }
+//   }
+// }
+// class cannonball
+// {
+//   int x;
+//   int y;
+//   int flag;
+//   cannonball()
+//   {
+//     x=600;
+//     y=600;
+//     flag=1;//can be fired
+//   }
+//   void fire(int x,int y)
+//   {
+//     this.x=x;
+//     this.y=y;
+//     flag=-1;//fired
+//   }
+//   void fly()
+//   {
+//     if(flag==-1) y-=5;
+//   }
+//   void display()
+//   {
+//     if(y<600)
+//     {
+//       fill(100);
+//       ellipse(x,y,20,20);
+//     }
+//   }
+// }
+// class cannon
+// {
+//   int x;
+//   cannon(int x)
+//   {
+//     this.x=x;
+//   }
+//   void display()
+//   {
+//     fill(0);
+//     rect(mouseX,580,40,20);
+//     rect(mouseX+10,560,20,40);
+//   }
+//   void fire(cannonball c)
+//   {
+//     c.fire(mouseX,580);
+//   }
+// }
+// cannon a=new cannon((int)random(20,500));
+// cannonball[] c=new cannonball[20];
+// plane p=new plane(0,(int)random(20,200));
+// void setup()
+// {
+//   size(600,600);
+//   smooth();
+//   background(255);
+//   for(int i=0;i<20;i++)
+//   {
+//      c[i]=new cannonball();
+//   }
+// }
+// void keyPressed()
+// {
+//   if(key=='r')
+//   {
+//      remain=20;
+//      credit=0;
+//      for(int i=0;i<20;i++)
+//        c[i]=new cannonball();
+//      p.flag=-1;
+//      p.speed=3;
+//   }
+//   if(key=='e') p.speed+=3;
+//   if(key=='q')
+//   {
+//     if(p.speed<=3) return;
+//     else p.speed-=3;
+//   }
+// }
+// void mousePressed()
+// {
+//   int i=0;
+//     for(i=0;i<20;i++)
+//     {
+//       if(c[i].flag==1) break;
+//     }
+//     if(i==20) return;
+//     a.fire(c[i]);
+//     remain--;
+// }
+// void draw()
+// {
+//   background(255); 
+//   a.display();
+//   for(int i=0;i<20;i++)
+//   {
+//     if(c[i].flag==-1) 
+//     {
+//       c[i].fly();
+//       c[i].display();
+//     }
+//   }
+//   for(int i=0;i<20;i++)
+//   {
+//     p.crash(c[i]);
+//   }
+//   p.fly();
+//   p.display();
+//   if(hit==1)
+//   {
+//     hit=0;
+//     int j=5;
+//     for(int i=0;i<20;i++)
+//     {
+//       if(c[i].flag==-1) 
+//       {
+//         c[i]=new cannonball();
+//         j--;
+//         remain++;
+//         if(j==0) break;
+//       }
+//     }
+//   }
+//   textSize(20);
+//   text("remain: "+remain,500,50);
+//   text("credit: "+credit,500,100);
+//   if(remain==0)
+//   {
+//     textSize(50);
+//     text("run out of ammo...",100,150);
+//     text("final score is: "+credit,100,220);
+//     text("press 'r' to restart..",100,280); 
+//   }
   
-}
+// }
   public void settings() {  size(1280, 720, P2D); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "FarAway" };

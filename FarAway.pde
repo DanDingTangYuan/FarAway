@@ -22,9 +22,6 @@ boolean fallDown = false; // 判定腳色掉落
 int playerX = 540;    //玩家位置
 int playerY = 510;    //玩家位置
 int mapNumber = 1;    //地圖編號
-int mapX = 0;    //地圖座標, X軸
-int mapX_2 = 2560;    //地圖座標_2, X軸
-
 
 
 // class Block
@@ -56,14 +53,14 @@ class player
     // {
     // }
 
-    void move(mapIndicate b)
+    void playerMove(mapIndicate b)
     {
         if(PressUp == true)
         {
             if(PressRight == true && PressLeft == true)
             {
                 walkSpeed = 0;
-                // Jump();
+                Jump();
                 playerFace = 2;
                 if(fall == true)
                 {
@@ -73,7 +70,7 @@ class player
             else if(PressRight == true)
             {
                 walkSpeed = 7;
-                // Jump();
+                Jump();
                 playerFace = 3;
                 if(fall == true)
                 {
@@ -83,7 +80,7 @@ class player
             else if(PressLeft == true)
             {
                 walkSpeed = -7;
-                // Jump();
+                Jump();
                 playerFace = 1;
                 if(fall == true)
                 {
@@ -93,14 +90,14 @@ class player
             else
             {
                 walkSpeed = 0;
-                // Jump();
+                Jump();
                 playerFace = 2;
                 if(fall == true)
                 {
                     playerFace = 8;
                 }
             }
-            // PlayerFace();
+            PlayerFace();
         }
         else
         {
@@ -110,27 +107,27 @@ class player
                 {
                     playerFace = 8;
                     walkSpeed = 0;
-                    // Fall();
+                    Fall();
                 }
                 else if(PressRight == true)
                 {
                     playerFace = 9;
                     walkSpeed = 7;
-                    // Fall();
+                    Fall();
                 }
                 else if(PressLeft == true)
                 {
                     playerFace = 7;
                     walkSpeed = -7;
-                    // Fall();
+                    Fall();
                 }
                 else
                 {
                     playerFace = 8;
                     walkSpeed = 0;
-                    // Fall();
+                    Fall();
                 }
-                // PlayerFace();
+                PlayerFace();
             }
             else
             {
@@ -154,7 +151,7 @@ class player
                     playerFace = 5;
                     walkSpeed = 0;
                 }
-                // PlayerFace();
+                PlayerFace();
             }
         }
         if(x >= 1080)
@@ -185,7 +182,7 @@ class player
     
     void display()
     {
-        image(PF, playerX, playerY);
+        image(PF, x, y);
     }
 
     void PlayerFace()
@@ -346,13 +343,12 @@ class mapIndicate
         {
             image(mapR, x_2, 0);
         }
-        else if(mapX <= -7680)
+        else if(x <= -7680)
         {
             x = -7680;
             x_2 = x + 5120;
             image(mapR, x_2, 0);
         }
-        
     }
 }
 
@@ -380,8 +376,8 @@ void draw()
             GameManu();
             break;
         case 2 :    //遊戲畫面
-            b.display();
-            e.move();
+            b.mapMove();
+            e.playerMove(b);
             e.display();
             break;
     }
