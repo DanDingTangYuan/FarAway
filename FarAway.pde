@@ -22,6 +22,7 @@ boolean fallDown = false; // 判定腳色掉落
 int playerX = 540;    //玩家位置
 int playerY = 510;    //玩家位置
 int mapNumber = 1;    //地圖編號
+int mapSpeed = 0;
 
 
 // class Block
@@ -154,28 +155,54 @@ class player
                 PlayerFace();
             }
         }
-        if(x >= 1080)
+        if(x >= 640)
         {
-            b.mapSpeed = walkSpeed;
-            x = x - b.mapSpeed;
+            if(walkSpeed > 0)
+            {
+                mapSpeed = walkSpeed;
+            }
+            x = x - mapSpeed;
             if(walkSpeed <= 0)
             {
                 x = x + walkSpeed;
             }
-            
+            if(b.x <= -6100 && x <= 1180)
+            {
+                mapSpeed = 0;
+                x = x + walkSpeed;
+                if(x > 1180)
+                {
+                    x = 1180;
+                }
+            }
+            b.mapMove();
         }
-        else if(x <= 100)
+        if(x <= 100)
         {
-            b.mapSpeed = walkSpeed;
-            x = x - b.mapSpeed;
+            if(walkSpeed < 0)
+            {
+                mapSpeed = walkSpeed;
+                f(b.x <= 0 && x >= 0)
+                {
+                    mapSpeed = 0;
+                    x = x - walkSpeed;
+                    if(x < 0)
+                    {
+                        x = 0;
+                    }
+                }
+                x = x - walkSpeed;
+            }   
             if(walkSpeed >= 0)
             {
                 x = x + walkSpeed;
             }
+            i
+            b.mapMove();
         }
-        else
+        if(x > 100 && x < 640)
         {
-            b.mapSpeed = 0;
+            mapSpeed = 0;
             x = x + walkSpeed;
         }
     }
@@ -309,7 +336,7 @@ class player
 
 class mapIndicate
 {
-    int x, x_2, mapSpeed;
+    int x, x_2;
     mapIndicate()
     {
         x = 0;
@@ -318,6 +345,7 @@ class mapIndicate
 
     void mapMove()
     {
+        x = x - mapSpeed;
         if(x > 0)
         {
             x = 0;
@@ -333,19 +361,15 @@ class mapIndicate
             image(mapL, x, 0);
             image(mapC, x_2, 0);
         }
-        else if(x <= -3840 && x >= -6400) 
+        else if(x <= -3840 && x > -6400) 
         {
             x_2 = x + 5120;
             image(mapC, x + 2560, 0);
             image(mapR, x_2, 0);
         }
-        else if(x > -7680)
+        else if(x <= -6400)
         {
-            image(mapR, x_2, 0);
-        }
-        else if(x <= -7680)
-        {
-            x = -7680;
+            x = -6400;
             x_2 = x + 5120;
             image(mapR, x_2, 0);
         }
