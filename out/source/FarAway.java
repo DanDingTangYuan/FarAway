@@ -40,315 +40,296 @@ int playerY = 510;    //玩家位置
 int mapNumber = 1;    //地圖編號
 int mapSpeed = 0;
 
+class player
+{
+    int x, y, playerFace, walkSpeed, fallTime;
 
-// class Block
-// {
-//     int pX, pY, x, y;
-//     Block(int a, int b, int c, int d);
-//     {
-//         this.pX = a;
-//         this.pY = b;
-//         this.x = c;
-//         this.y = d;
-//     }
-// }
+    player()
+    {
+        x = 540;
+        y = 510;
+        playerFace = 5;
+        walkSpeed = 0;
+        fallTime = 0;
+    }
 
-// class player
-// {
-//     int x, y, playerFace, walkSpeed, fallTime;
-
-//     player()
-//     {
-//         x = 540;
-//         y = 510;
-//         playerFace = 5;
-//         walkSpeed = 0;
-//         fallTime = 0;
-//     }
-
-//     // void barrier()
-//     // {
-//     // }
-
-//     void playerMove(mapIndicate b)
-//     {
-//         if(PressUp == true)
-//         {
-//             if(PressRight == true && PressLeft == true)
-//             {
-//                 walkSpeed = 0;
-//                 Jump();
-//                 playerFace = 2;
-//                 if(fall == true)
-//                 {
-//                     playerFace = 8;
-//                 }
-//             }
-//             else if(PressRight == true)
-//             {
-//                 walkSpeed = 7;
-//                 Jump();
-//                 playerFace = 3;
-//                 if(fall == true)
-//                 {
-//                     playerFace = 9;
-//                 }
-//             }
-//             else if(PressLeft == true)
-//             {
-//                 walkSpeed = -7;
-//                 Jump();
-//                 playerFace = 1;
-//                 if(fall == true)
-//                 {
-//                     playerFace = 7;
-//                 }
-//             }
-//             else
-//             {
-//                 walkSpeed = 0;
-//                 Jump();
-//                 playerFace = 2;
-//                 if(fall == true)
-//                 {
-//                     playerFace = 8;
-//                 }
-//             }
-//             PlayerFace();
-//         }
-//         else
-//         {
-//             if(fallDown == true)
-//             {
-//                 if(PressRight == true && PressLeft == true)
-//                 {
-//                     playerFace = 8;
-//                     walkSpeed = 0;
-//                     Fall();
-//                 }
-//                 else if(PressRight == true)
-//                 {
-//                     playerFace = 9;
-//                     walkSpeed = 7;
-//                     Fall();
-//                 }
-//                 else if(PressLeft == true)
-//                 {
-//                     playerFace = 7;
-//                     walkSpeed = -7;
-//                     Fall();
-//                 }
-//                 else
-//                 {
-//                     playerFace = 8;
-//                     walkSpeed = 0;
-//                     Fall();
-//                 }
-//                 PlayerFace();
-//             }
-//             else
-//             {
-//                 if(PressRight == true && PressLeft == true)
-//                 {
-//                     playerFace = 5;
-//                     walkSpeed = 0;
-//                 }
-//                 else if(PressRight == true)
-//                 {
-//                     playerFace = 6;
-//                     walkSpeed = 7;
-//                 }
-//                 else if(PressLeft == true)
-//                 {
-//                     playerFace = 4;
-//                     walkSpeed = -7;
-//                 }
-//                 else
-//                 {
-//                     playerFace = 5;
-//                     walkSpeed = 0;
-//                 }
-//                 PlayerFace();
-//             }
-//         }
-//         if(x >= 640)
-//         {
-//             if(walkSpeed > 0)
-//             {
-//                 mapSpeed = walkSpeed;
-//             }
-//             x = x - mapSpeed;
-//             if(walkSpeed <= 0)
-//             {
-//                 x = x + walkSpeed;
-//             }
-//             if(b.x <= -6100 && x <= 1180)
-//             {
-//                 mapSpeed = 0;
-//                 x = x + walkSpeed;
-//                 if(x > 1180)
-//                 {
-//                     x = 1180;
-//                 }
-//             }
-//             b.mapMove();
-//         }
-//         if(x <= 100)
-//         {
-//             if(walkSpeed < 0)
-//             {
-//                 mapSpeed = walkSpeed;
-//                 f(b.x <= 0 && x >= 0)
-//                 {
-//                     mapSpeed = 0;
-//                     x = x - walkSpeed;
-//                     if(x < 0)
-//                     {
-//                         x = 0;
-//                     }
-//                 }
-//                 x = x - walkSpeed;
-//             }   
-//             if(walkSpeed >= 0)
-//             {
-//                 x = x + walkSpeed;
-//             }
-//             i
-//             b.mapMove();
-//         }
-//         if(x > 100 && x < 640)
-//         {
-//             mapSpeed = 0;
-//             x = x + walkSpeed;
-//         }
-//     }
+    public void playerMove(mapIndicate b)
+    {
+        if(PressUp == true)
+        {
+            if(PressRight == true && PressLeft == true)
+            {
+                walkSpeed = 0;
+                Jump();
+                playerFace = 2;
+                if(fall == true)
+                {
+                    playerFace = 8;
+                }
+            }
+            else if(PressRight == true)
+            {
+                walkSpeed = 7;
+                Jump();
+                playerFace = 3;
+                if(fall == true)
+                {
+                    playerFace = 9;
+                }
+            }
+            else if(PressLeft == true)
+            {
+                walkSpeed = -7;
+                Jump();
+                playerFace = 1;
+                if(fall == true)
+                {
+                    playerFace = 7;
+                }
+            }
+            else
+            {
+                walkSpeed = 0;
+                Jump();
+                playerFace = 2;
+                if(fall == true)
+                {
+                    playerFace = 8;
+                }
+            }
+            PlayerFace();
+        }
+        else
+        {
+            if(fallDown == true)
+            {
+                if(PressRight == true && PressLeft == true)
+                {
+                    playerFace = 8;
+                    walkSpeed = 0;
+                    Fall();
+                }
+                else if(PressRight == true)
+                {
+                    playerFace = 9;
+                    walkSpeed = 7;
+                    Fall();
+                }
+                else if(PressLeft == true)
+                {
+                    playerFace = 7;
+                    walkSpeed = -7;
+                    Fall();
+                }
+                else
+                {
+                    playerFace = 8;
+                    walkSpeed = 0;
+                    Fall();
+                }
+                PlayerFace();
+            }
+            else
+            {
+                if(PressRight == true && PressLeft == true)
+                {
+                    playerFace = 5;
+                    walkSpeed = 0;
+                }
+                else if(PressRight == true)
+                {
+                    playerFace = 6;
+                    walkSpeed = 7;
+                }
+                else if(PressLeft == true)
+                {
+                    playerFace = 4;
+                    walkSpeed = -7;
+                }
+                else
+                {
+                    playerFace = 5;
+                    walkSpeed = 0;
+                }
+                PlayerFace();
+            }
+        }
+        if(x > 640)
+        {
+            if(walkSpeed > 0)
+            {
+                mapSpeed = walkSpeed;
+            }
+            if(walkSpeed < 0)
+            {
+                x = x + walkSpeed;
+            }
+            if(b.x <= -6400 && x <= 1180)
+            {
+                mapSpeed = 0;
+                x = x + walkSpeed;
+                if(x > 1180)
+                {
+                    x = 1180;
+                }
+            }
+            b.mapMove();
+        }
+        if(x < 100)
+        {
+            if(walkSpeed > 0)
+            {
+                x = x + walkSpeed;
+            }
+            if(walkSpeed < 0)
+            {
+                mapSpeed = walkSpeed;
+            }
+            if(b.x >= 0 && x >= 0)
+            {
+                mapSpeed = 0;
+                x = x + walkSpeed;
+                if(x < 0)
+                {
+                    x = 0;
+                }
+            }
+            b.mapMove();
+        }
+        if(x >= 100 && x <= 640)
+        {
+            mapSpeed = 0;
+            x = x + walkSpeed;
+        }
+    }
     
-//     void display()
-//     {
-//         image(PF, x, y);
-//     }
+    public void display()
+    {
+        image(PF, x, y);
+    }
 
-//     void PlayerFace()
-//     {
-//         switch(playerFace)
-//         {
-//         case 1:
-//             PF = loadImage("p1.png");
-//             break;
-//         case 2:
-//             PF = loadImage("p2.png");
-//             break;
-//         case 3:
-//             PF = loadImage("p3.png");
-//             break;
-//         case 4:
-//             PF = loadImage("p4.png");
-//             break;
-//         case 5:
-//             PF = loadImage("p5.png");
-//             break;
-//         case 6:
-//             PF = loadImage("p6.png");
-//             break;
-//         case 7:
-//             PF = loadImage("p7.png");
-//             break;
-//         case 8:
-//             PF = loadImage("p8.png");
-//             break;
-//         case 9:
-//             PF = loadImage("p9.png");
-//             break;
-//         }
-//     }
+    public void PlayerFace()
+    {
+        switch(playerFace)
+        {
+        case 1:
+            PF = loadImage("p1.png");
+            break;
+        case 2:
+            PF = loadImage("p2.png");
+            break;
+        case 3:
+            PF = loadImage("p3.png");
+            break;
+        case 4:
+            PF = loadImage("p4.png");
+            break;
+        case 5:
+            PF = loadImage("p5.png");
+            break;
+        case 6:
+            PF = loadImage("p6.png");
+            break;
+        case 7:
+            PF = loadImage("p7.png");
+            break;
+        case 8:
+            PF = loadImage("p8.png");
+            break;
+        case 9:
+            PF = loadImage("p9.png");
+            break;
+        }
+    }
 
-//     void Jump()
-//     {
-//         jumpTime ++;
-//         if(jumpTime >= 1 && jumpTime <= 10)
-//         {
-//             y -= 14;
-//         }
-//         if(jumpTime >= 11 && jumpTime <= 15)
-//         {
-//             y -= 9;
-//         }
-//         if(jumpTime >= 16 && jumpTime <= 17)
-//         {
-//             y -= 6;
-//         }
-//         if(jumpTime == 18)
-//         {
-//             y -= 3;
-//             jump = false;
-//             fall = true;
-//         }
-//         if(jumpTime == 19)
-//         {
-//             y += 3;
-//         }
-//         if(jumpTime >= 20 && jumpTime <= 21)
-//         {
-//             y += 6;
-//         }
-//         if(jumpTime >= 22 && jumpTime <= 26)
-//         {
-//             y += 9;
-//         }
-//         if(jumpTime >= 27 && jumpTime < 36)
-//         {
-//             y += 14;
-//         }
-//         if(jumpTime == 36)
-//         {
-//             y += 14;
-//             fall = false;
-//             PressUp = false;
-//             jumpTime = 0;
-//         }
-//     }   
+    public void Jump()
+    {
+        jumpTime ++;
+        if(jumpTime >= 1 && jumpTime <= 10)
+        {
+            y -= 14;
+        }
+        if(jumpTime >= 11 && jumpTime <= 15)
+        {
+            y -= 9;
+        }
+        if(jumpTime >= 16 && jumpTime <= 17)
+        {
+            y -= 6;
+        }
+        if(jumpTime == 18)
+        {
+            y -= 3;
+            jump = false;
+            fall = true;
+        }
+        if(jumpTime == 19)
+        {
+            y += 3;
+        }
+        if(jumpTime >= 20 && jumpTime <= 21)
+        {
+            y += 6;
+        }
+        if(jumpTime >= 22 && jumpTime <= 26)
+        {
+            y += 9;
+        }
+        if(jumpTime >= 27 && jumpTime < 36)
+        {
+            y += 14;
+        }
+        if(jumpTime == 36)
+        {
+            y += 14;
+            fall = false;
+            PressUp = false;
+            jumpTime = 0;
+        }
+    }   
 
-//     void Fall()
-//     {
-//         if(fallDown == true)
-//         {
-//             if(fallTime < 9)
-//             {
-//                 fallTime ++;
-//             }
-//             switch(fallTime)
-//             {
-//                 case 1 :
-//                     y -= 3;
-//                     break;
-//                 case 2 :
-//                     y -= 6;
-//                     break;
-//                 case 3 :
-//                     y -= 6;
-//                     break;
-//                 case 4 :
-//                     y -= 9;
-//                     break;
-//                 case 5 :
-//                     y -= 9;
-//                     break;
-//                 case 6 :
-//                     y -= 9;
-//                     break;
-//                 case 7 :
-//                     y -= 9;
-//                     break;
-//                 case 8 :
-//                     y -= 9;
-//                     break;
-//                 case 9 :
-//                     y -= 14;
-//                     break;
-//             }
-//         }
-//     }
-// }
+    public void Fall()
+    {
+        if(fallDown == true)
+        {
+            if(fallTime < 9)
+            {
+                fallTime ++;
+            }
+            switch(fallTime)
+            {
+                case 1 :
+                    y -= 3;
+                    break;
+                case 2 :
+                    y -= 6;
+                    break;
+                case 3 :
+                    y -= 6;
+                    break;
+                case 4 :
+                    y -= 9;
+                    break;
+                case 5 :
+                    y -= 9;
+                    break;
+                case 6 :
+                    y -= 9;
+                    break;
+                case 7 :
+                    y -= 9;
+                    break;
+                case 8 :
+                    y -= 9;
+                    break;
+                case 9 :
+                    y -= 14;
+                    break;
+            }
+        }
+    }
+}
+
 
 class mapIndicate
 {
@@ -377,13 +358,13 @@ class mapIndicate
             image(mapL, x, 0);
             image(mapC, x_2, 0);
         }
-        else if(x <= -3840 && x > -6400) 
+        else if(x <= -3840 && x >= -6400) 
         {
             x_2 = x + 5120;
             image(mapC, x + 2560, 0);
             image(mapR, x_2, 0);
         }
-        else if(x <= -6400)
+        else if(x < -6400)
         {
             x = -6400;
             x_2 = x + 5120;
@@ -392,8 +373,10 @@ class mapIndicate
     }
 }
 
+
 mapIndicate b = new mapIndicate(); 
 player e = new player();
+
 
 
 public void setup()
@@ -686,301 +669,6 @@ public void GameManu()
 //   }
   
 // }
-class player
-{
-    int x, y, playerFace, walkSpeed, fallTime;
-
-    player()
-    {
-        x = 540;
-        y = 510;
-        playerFace = 5;
-        walkSpeed = 0;
-        fallTime = 0;
-    }
-
-    // void barrier()
-    // {
-    // }
-
-    public void playerMove(mapIndicate b)
-    {
-        if(PressUp == true)
-        {
-            if(PressRight == true && PressLeft == true)
-            {
-                walkSpeed = 0;
-                Jump();
-                playerFace = 2;
-                if(fall == true)
-                {
-                    playerFace = 8;
-                }
-            }
-            else if(PressRight == true)
-            {
-                walkSpeed = 7;
-                Jump();
-                playerFace = 3;
-                if(fall == true)
-                {
-                    playerFace = 9;
-                }
-            }
-            else if(PressLeft == true)
-            {
-                walkSpeed = -7;
-                Jump();
-                playerFace = 1;
-                if(fall == true)
-                {
-                    playerFace = 7;
-                }
-            }
-            else
-            {
-                walkSpeed = 0;
-                Jump();
-                playerFace = 2;
-                if(fall == true)
-                {
-                    playerFace = 8;
-                }
-            }
-            PlayerFace();
-        }
-        else
-        {
-            if(fallDown == true)
-            {
-                if(PressRight == true && PressLeft == true)
-                {
-                    playerFace = 8;
-                    walkSpeed = 0;
-                    Fall();
-                }
-                else if(PressRight == true)
-                {
-                    playerFace = 9;
-                    walkSpeed = 7;
-                    Fall();
-                }
-                else if(PressLeft == true)
-                {
-                    playerFace = 7;
-                    walkSpeed = -7;
-                    Fall();
-                }
-                else
-                {
-                    playerFace = 8;
-                    walkSpeed = 0;
-                    Fall();
-                }
-                PlayerFace();
-            }
-            else
-            {
-                if(PressRight == true && PressLeft == true)
-                {
-                    playerFace = 5;
-                    walkSpeed = 0;
-                }
-                else if(PressRight == true)
-                {
-                    playerFace = 6;
-                    walkSpeed = 7;
-                }
-                else if(PressLeft == true)
-                {
-                    playerFace = 4;
-                    walkSpeed = -7;
-                }
-                else
-                {
-                    playerFace = 5;
-                    walkSpeed = 0;
-                }
-                PlayerFace();
-            }
-        }
-        if(x >= 640)
-        {
-            if(walkSpeed > 0)
-            {
-                mapSpeed = walkSpeed;
-            }
-            x = x - mapSpeed;
-            if(walkSpeed <= 0)
-            {
-                x = x + walkSpeed;
-            }
-            if(b.x <= -6100 && x <= 1180)
-            {
-                mapSpeed = 0;
-                x = x + walkSpeed;
-                if(x > 1180)
-                {
-                    x = 1180;
-                }
-            }
-            b.mapMove();
-        }
-        if(x <= 100)
-        {
-            if(walkSpeed < 0)
-            {
-                mapSpeed = walkSpeed;
-                if(b.x <= 0 && x >= 0)
-                {
-                    mapSpeed = 0;
-                    x = x - walkSpeed;
-                    if(x < 0)
-                    {
-                        x = 0;
-                    }
-                }
-                x = x - walkSpeed;
-            }   
-            if(walkSpeed >= 0)
-            {
-                x = x + walkSpeed;
-            }
-            b.mapMove();
-        }
-        if(x > 100 && x < 640)
-        {
-            mapSpeed = 0;
-            x = x + walkSpeed;
-        }
-    }
-    
-    public void display()
-    {
-        image(PF, x, y);
-    }
-
-    public void PlayerFace()
-    {
-        switch(playerFace)
-        {
-        case 1:
-            PF = loadImage("p1.png");
-            break;
-        case 2:
-            PF = loadImage("p2.png");
-            break;
-        case 3:
-            PF = loadImage("p3.png");
-            break;
-        case 4:
-            PF = loadImage("p4.png");
-            break;
-        case 5:
-            PF = loadImage("p5.png");
-            break;
-        case 6:
-            PF = loadImage("p6.png");
-            break;
-        case 7:
-            PF = loadImage("p7.png");
-            break;
-        case 8:
-            PF = loadImage("p8.png");
-            break;
-        case 9:
-            PF = loadImage("p9.png");
-            break;
-        }
-    }
-
-    public void Jump()
-    {
-        jumpTime ++;
-        if(jumpTime >= 1 && jumpTime <= 10)
-        {
-            y -= 14;
-        }
-        if(jumpTime >= 11 && jumpTime <= 15)
-        {
-            y -= 9;
-        }
-        if(jumpTime >= 16 && jumpTime <= 17)
-        {
-            y -= 6;
-        }
-        if(jumpTime == 18)
-        {
-            y -= 3;
-            jump = false;
-            fall = true;
-        }
-        if(jumpTime == 19)
-        {
-            y += 3;
-        }
-        if(jumpTime >= 20 && jumpTime <= 21)
-        {
-            y += 6;
-        }
-        if(jumpTime >= 22 && jumpTime <= 26)
-        {
-            y += 9;
-        }
-        if(jumpTime >= 27 && jumpTime < 36)
-        {
-            y += 14;
-        }
-        if(jumpTime == 36)
-        {
-            y += 14;
-            fall = false;
-            PressUp = false;
-            jumpTime = 0;
-        }
-    }   
-
-    public void Fall()
-    {
-        if(fallDown == true)
-        {
-            if(fallTime < 9)
-            {
-                fallTime ++;
-            }
-            switch(fallTime)
-            {
-                case 1 :
-                    y -= 3;
-                    break;
-                case 2 :
-                    y -= 6;
-                    break;
-                case 3 :
-                    y -= 6;
-                    break;
-                case 4 :
-                    y -= 9;
-                    break;
-                case 5 :
-                    y -= 9;
-                    break;
-                case 6 :
-                    y -= 9;
-                    break;
-                case 7 :
-                    y -= 9;
-                    break;
-                case 8 :
-                    y -= 9;
-                    break;
-                case 9 :
-                    y -= 14;
-                    break;
-            }
-        }
-    }
-}
   public void settings() {  size(1280, 720, P2D); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "FarAway" };
