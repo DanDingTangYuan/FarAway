@@ -5,6 +5,7 @@ PImage gameStart;   //遊戲開始按鈕
 PImage mapL;    //左側地圖
 PImage mapC;    //中間地圖
 PImage mapR;    //右側地圖
+PImage textureBlock;    //地圖物件圖片
 PImage test;    //test = 測試用
 
 boolean onBotton = false;   // 游標位置判定
@@ -380,6 +381,7 @@ void setup()
     mapL = loadImage("map-1.jpg");
     mapC = loadImage("map-2.jpg");
     mapR = loadImage("map-3.jpg");
+    textureBlock = loadImage("block.png");
     image(BG, 0, 0);
 }
 
