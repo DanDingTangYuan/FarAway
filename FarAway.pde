@@ -144,6 +144,10 @@ class player
             {
                 mapSpeed = walkSpeed;
             }
+            if(walkSpeed == 0)
+            {
+                mapSpeed = 0;
+            }
             if(walkSpeed < 0)
             {
                 x = x + walkSpeed;
@@ -164,6 +168,10 @@ class player
             if(walkSpeed > 0)
             {
                 x = x + walkSpeed;
+            }
+            if(walkSpeed == 0)
+            {
+                mapSpeed = 0;
             }
             if(walkSpeed < 0)
             {
