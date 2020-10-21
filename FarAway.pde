@@ -7,7 +7,6 @@ PImage mapC;    //中間地圖
 PImage mapR;    //右側地圖
 PImage textureBlock;    //地圖物件圖片
 PImage theFloor;    //地圖地板
-PImage test;    //test = 測試用
 
 boolean onBotton = false;   // 游標位置判定
 
