@@ -21,6 +21,8 @@ PImage gameStart;   //遊戲開始按鈕
 PImage mapL;    //左側地圖
 PImage mapC;    //中間地圖
 PImage mapR;    //右側地圖
+PImage textureBlock;    //地圖物件圖片
+PImage theFloor;    //地圖地板
 PImage test;    //test = 測試用
 
 boolean onBotton = false;   // 游標位置判定
@@ -47,7 +49,7 @@ class player
     player()
     {
         x = 540;
-        y = 510;
+        y = 420;
         playerFace = 5;
         walkSpeed = 0;
         fallTime = 0;
@@ -178,6 +180,8 @@ class player
                 }
             }
             b.mapMove();
+            start.display(b);
+            end.display(b);
         }
         if(x < 100)
         {
@@ -203,6 +207,8 @@ class player
                 }
             }
             b.mapMove();
+            start.display(b);
+            end.display(b);
         }
         if(x >= 100 && x <= 640)
         {
@@ -381,10 +387,35 @@ class mapIndicate
     }
 }
 
+class floor
+{
+    int x, y, x_2;
+    floor(int a, int b)
+    {
+        this.x = a;
+        this.y = b;
+        x_2 = 0;
+    }
+
+    public void display(mapIndicate b)
+    {
+
+        x_2 = x + b.x;
+        beginShape();   //圖形開始
+        texture(theFloor);
+        vertex(x_2, y, 0, 0);
+        vertex(x_2+500, y, 500, 0);
+        vertex(x_2+500, y+200, 500, 200);
+        vertex(x_2, y+200, 0, 200);
+        endShape();
+    }
+}
+
 
 mapIndicate b = new mapIndicate(); 
 player e = new player();
-
+floor start = new floor(0, 520);
+floor end = new floor(7180, 520);
 
 
 public void setup()
@@ -396,6 +427,8 @@ public void setup()
     mapL = loadImage("map-1.jpg");
     mapC = loadImage("map-2.jpg");
     mapR = loadImage("map-3.jpg");
+    textureBlock = loadImage("block.png");
+    theFloor = loadImage("theFloor.png");
     image(BG, 0, 0);
 }
 
@@ -408,6 +441,8 @@ public void draw()
             break;
         case 2 :    //遊戲畫面
             b.mapMove();
+            start.display(b);
+            end.display(b);
             e.playerMove(b);
             e.display();
             break;
@@ -424,7 +459,7 @@ public void keyPressed()
   case RIGHT:
     PressRight = true;
     break;
-  case ' ':
+  case UP:
     PressUp = true;
     break;
   }
