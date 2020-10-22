@@ -455,6 +455,7 @@ void draw()
             start.display(b);
             end.display(b);
             e.playerMove(b);
+            judgment(bk, e);
             e.display();
             break;
     }
@@ -568,4 +569,20 @@ void setuptheblock()
     bk[34].setting(6500, 520);
     bk[35].setting(6800, 520);
     bk[36].setting(6900, 520);
+}
+
+void judgment(bk, e)
+{
+    for(int i = 0; i < 37; i++)
+    {
+        if(abs(e.x - bk[i].x < 100) && abs(e.y - bk[i].y < 100))
+        {
+            e.y = bk[i].y + 100;
+        }
+        else if(abs(e.x - bk[i].x < 100) && abs(e.y - bk[i].y == 100))
+        {
+            e.x = bk[i].x -100;
+        }
+    }
+    
 }
