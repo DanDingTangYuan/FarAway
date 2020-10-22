@@ -1,11 +1,17 @@
-class Block
+class theBlock
 {
     int x, y, x_2;
-    Block(int a, int b);
+    theBlock();
+    {
+        x = 0;
+        y = 0;
+        x_2 = 0;
+    }
+
+    void setting(int a, int b)
     {
         this.x = a;
         this.y = b;
-        x_2 = 0;
     }
 
     void display(mapIndicate b)

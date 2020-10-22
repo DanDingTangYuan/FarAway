@@ -23,7 +23,6 @@ PImage mapC;    //中間地圖
 PImage mapR;    //右側地圖
 PImage textureBlock;    //地圖物件圖片
 PImage theFloor;    //地圖地板
-PImage test;    //test = 測試用
 
 boolean onBotton = false;   // 游標位置判定
 
@@ -37,9 +36,6 @@ boolean fall = false;       //Jump() 中向下階段
 
 boolean fallDown = false; // 判定腳色掉落
 
-int playerX = 540;    //玩家位置
-int playerY = 510;    //玩家位置
-int mapNumber = 1;    //地圖編號
 int mapSpeed = 0;
 
 class player
@@ -411,15 +407,46 @@ class floor
     }
 }
 
+class theBlock
+{
+    int x, y, x_2;
+    theBlock()
+    {
+        x = 0;
+        y = 0;
+        x_2 = 0;
+    }
+
+    public void setting(int a, int b)
+    {
+        this.x = a;
+        this.y = b;
+    }
+
+    public void display(mapIndicate b)
+    {
+        x_2 = x + b.x;
+        beginShape();   //圖形開始
+        texture(textureBlock);
+        vertex(x_2, y, 0, 0);
+        vertex(x_2+100, y, 100, 0);
+        vertex(x_2+100, y+100, 100, 100);
+        vertex(x_2, y+100, 0, 100);
+        endShape();
+    }
+}
+
+
 
 mapIndicate b = new mapIndicate(); 
 player e = new player();
 floor start = new floor(0, 520);
 floor end = new floor(7180, 520);
-
+theBlock[] bk = new theBlock[37];
 
 public void setup()
 {
+    setuptheblock();
     
     BG = loadImage("cover.jpg");
     PF = loadImage("p5.png");
@@ -516,6 +543,47 @@ public void GameManu()
         endShape();
         onBotton = false;
     }
+}
+
+public void setuptheblock()
+{
+    bk[0].setting(700, 520);
+    bk[1].setting(800, 520);
+    bk[2].setting(1100, 520);
+    bk[3].setting(1200, 520);
+    bk[4].setting(1200, 620);
+    bk[5].setting(1500, 520);
+    bk[6].setting(1500, 620);
+    bk[7].setting(1600, 520);
+    bk[8].setting(1900, 520);
+    bk[9].setting(1900, 620);
+    bk[10].setting(2100, 520);
+    bk[11].setting(2200, 520);
+    bk[12].setting(2500, 520);
+    bk[13].setting(2800, 520);
+    bk[14].setting(2800, 620);
+    bk[15].setting(3100, 520);
+    bk[16].setting(3200, 520);
+    bk[17].setting(3400, 520);
+    bk[18].setting(3700, 520);
+    bk[19].setting(4000, 520);
+    bk[20].setting(4300, 520);
+    bk[21].setting(4300, 620);
+    bk[22].setting(4400, 520);
+    bk[23].setting(4700, 520);
+    bk[24].setting(4800, 520);
+    bk[25].setting(4800, 620);
+    bk[26].setting(5100, 520);
+    bk[27].setting(5100, 620);
+    bk[28].setting(5400, 520);
+    bk[29].setting(5500, 520);
+    bk[30].setting(5800, 520);
+    bk[31].setting(6100, 520);
+    bk[32].setting(6100, 620);
+    bk[33].setting(6400, 520);
+    bk[34].setting(6500, 520);
+    bk[35].setting(6800, 520);
+    bk[36].setting(6900, 520);
 }
 // //use mouse to control the cannon
 // //mouse click to shoot
