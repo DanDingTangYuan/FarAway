@@ -401,10 +401,10 @@ class theBlock
         x_2 = 0;
     }
 
-    void setting(int a, int b)
+    void setting(int x, int y)
     {
-        this.x = a;
-        this.y = b;
+        this.x = x;
+        this.y = y;
     }
 
     void display(mapIndicate b)
@@ -455,7 +455,7 @@ void draw()
             start.display(b);
             end.display(b);
             e.playerMove(b);
-            judgment(bk, e);
+            judgment();
             e.display();
             break;
     }
@@ -571,18 +571,21 @@ void setuptheblock()
     bk[36].setting(6900, 520);
 }
 
-void judgment(bk, e)
+void judgment()
 {
     for(int i = 0; i < 37; i++)
     {
-        if(abs(e.x - bk[i].x < 100) && abs(e.y - bk[i].y < 100))
+        if(e.x - bk[i].x < 100 || bk[i].x - e.x < 100 && e.y - bk[i].y < 100)
         {
             e.y = bk[i].y + 100;
         }
-        else if(abs(e.x - bk[i].x < 100) && abs(e.y - bk[i].y == 100))
+        if(e.x - bk[i].x < 100 && e.y - bk[i].y == 100)
         {
-            e.x = bk[i].x -100;
+            e.x = bk[i].x - 100;
+        }
+        if(bk[i].x - e.x < 100 && e.y - bk[i].y == 100)
+        {
+            e.x = bk[i].x + 100;
         }
     }
-    
 }
